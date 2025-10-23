@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+</head>
+<body>
+    <form action="https://www.w3schools.com/action_page.php" method="post">
+    <fieldset>
+        <legend><h3>RECETA</h3></legend>
+        <label for="nombre">Nombre de la receta: </label>
+        <input name="nombre" id="nombre" type="text">
+    </br></br>
+        <label for="correo">Coreo electrónico:&nbsp;&nbsp;&nbsp;</label>
+        <input name="correo" id="correo" type="email">
+    </br></br>
+<h4>Momento para comer:</h4>
+    <label for="momento">Desayuno:</label>
+        <input name="momento1" value="desayuno" type="checkbox">
+    <label for="momento">Almuerzo:</label>
+        <input name="momento2" value="almuerzo" type="checkbox">
+    <label for="momento">Merienda:</label>
+        <input name="momento3" value="merienda" type="checkbox">
+    <label for="momento">Cena:</label>
+        <input name="momento4" value="cena" type="checkbox">
+    <label for="momento">Postre:</label>
+        <input name="momento5" value="postre" type="checkbox">
+</br></br>
+<h4>Ingredientes:</h4>
+           <label for="ingredientes">Carne:</label>
+        <input name="ingredientes1" value="carne" type="checkbox">
+    <label for="ingredientes">Pescado:</label>
+        <input name="ingredientes2" value="pescado" type="checkbox">
+    <label for="ingredientes">Fruta:</label>
+        <input name="ingredientes3" value="fruta" type="checkbox">
+    <label for="ingredientes">Verdura:</label>
+        <input name="ingredientes4" value="verdura" type="checkbox">
+</br></br></br>
+<h4>Tiempo preparacion:</h4>
+
+<label for="horas">Horas:</label>
+    <select name="horas" id="horas">
+            <optgroup label="Horas: ">
+                <option>0</option>
+                <option>1</option>
+                <option>2</option>
+            </optgroup> 
+            </select>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<label for="minutos">Minutos:</label>
+    <select name="minutos" id="minutos">
+            <optgroup label="Minutos: ">
+                <option>00</option>
+                <option>15</option>
+                <option>30</option>
+                <option>45</option>
+                </select>
+            </optgroup>     
+    </fieldset>
+ <input type="submit" name="enviar" value="Enviar">
+
+
+
+
+
+</body>
+</html>
