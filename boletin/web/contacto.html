@@ -6,22 +6,25 @@
    <h2>CONTACTO</h2>
 </head>
 <body>
-<form action="https://lm.ciclo.iesnervion.es/form3/envio.php" method="post">
+<form action="https://lm.ciclo.iesnervion.es/form3/envio.php" method="post" enctype="multipart/form-data">
 <fieldset>
     <label for="nombre">Nombre: </label>
     <input name="nombre" id="nombre" type="text">
     </br>
     </br>
-    <label for="email">Email: &nbsp; &nbsp;</label> 
-    <input name="mail" id="email" type="text">
+    <label for="correo">Email: &nbsp; &nbsp;</label> 
+    <input name="correo" id="correo" type="email">
     </br>
     </br>
     <label for="mensaje">Mensaje: </label> 
     <textarea rows="8" cols="48" placeholder="Ingrese su mensaje" id="mensaje" name"mensaje" ></textarea>
+    </br>
+    </br>
+    <input type="file" id="imagen" name="imagen"> 
     </fieldset>
-    <button type="submit">Enviar</button>
-</form>
 
+    <button type="submit">Enviar</button>
+    
 <h3><a href="../index.html"><li> INICIO</li></a></h3>
 </body>
 
