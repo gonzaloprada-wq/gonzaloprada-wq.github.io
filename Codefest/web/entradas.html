@@ -10,9 +10,59 @@
 </nav>
 
 <main>
+<form action="https://www.w3schools.com/action_page.php" method="post">
+    <fieldset><legend><h2>Datos Personales</h2></legend>
+        <label for="nombre">Nombre y apellidos: </label>
+        <input type="text" placeholder="Nombre y Apellidos" name="nombre">
+    </br>    
+    </br>
+         <label for="email">Correo: </label>
+        <input  type="email" placeholder="Correo Electrónico" name="email" required>
+</fieldset>
+</br>
+</br>
 
+
+<fieldset><legend><h2>Tipo de Entrada</h2></legend>
+    <label for="tipo_entrada">
+    <input type="radio" name="tipo_entrada" value="abono_general">
+    Abono General (3 Días)
+    </label><br>
+    <label for="tipo_entrada">
+    <input type="radio" name="tipo_entrada" value="abono_vip">
+    Abono VIP (3 Días)
+  </label><br>
+    <label for="tipo_entrada">
+    <input type="radio" name="tipo_entrada" value="entrada_dia">
+    Entrada de Día
+  </label>
+</fieldset>
+
+       
+
+</fieldset>
+<fieldset>
+        <legend><h2>Extras</h2></legend>
+        <label for="camping">Camping:</label>
+         <input type="checkbox" id="camping" name="camping">
+         <label for="merchandise">Pack Merchandise:</label>
+         <input type="checkbox" id="merchandise" name="merchandise">
+         <label for="tallerestech">Acceso a talleres tech:</label>
+         <input type="checkbox" id="tallerestech" name="tallerestech">
+
+</fieldset>
+<fieldset>
+    <legend><h2>Día (Solo si es Entrada de Día)</h2></legend>
+      <select name="dia" id="dia">
+                <option>Viernes</option>
+                <option>Sabado</option>
+                <option>Domingo</option>
+        </select>
+    </fieldset>
+    <button type="submit">ENVIAR</button>
+</form>
+ 
 </main>
 <footer>
-
 </footer> 
 </html>
