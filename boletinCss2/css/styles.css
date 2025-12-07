@@ -1,0 +1,49 @@
+#contenido{
+
+    display: flex;
+
+    flex-direction: row;
+
+
+    justify-content: center;
+
+    align-items: stretch;
+
+    margin-top: 50px;
+
+    background-color: rgb(255, 255, 255);
+
+   margin: auto;
+
+    max-width: 800px;
+
+    border-radius: 16% 16% 16% 16% ;
+
+    box-shadow: 5px 8px 7px rgb(21, 20, 34);
+}
+h1{
+
+background-color: rgb(29, 29, 39);
+color: aliceblue;
+font-family: sans-serif;
+
+
+}
+.ingredientes{
+
+margin-right: 50px;
+
+
+
+}
+
+.preparacion{
+
+margin-left: 50px;
+}
+
+
+body{
+
+    background-color: rgb(191, 191, 241);
+}
