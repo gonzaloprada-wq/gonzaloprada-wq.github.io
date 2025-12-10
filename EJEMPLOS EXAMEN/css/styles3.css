@@ -1,0 +1,26 @@
+#cuadrado{
+height: 150px;
+width: 150px;
+background-image: url(importar-imagen-r.png);
+
+}
+.c1{
+border: 3px solid red;
+background-size: 40%;
+background-repeat: no-repeat;
+background-position: center;
+}
+
+.c2{
+border: 3px solid rgb(2, 35, 155);
+background-size: 25%;
+background-position-y: bottom;
+background-repeat: repeat-x;
+}
+
+.c3{
+border: 3px solid rgba(12, 90, 2, 0.89);
+background-size: 25%;
+background-position-x: right;
+background-repeat: repeat-y;
+}

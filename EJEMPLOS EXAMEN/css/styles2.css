@@ -1,0 +1,102 @@
+.l1{
+text-align: end;
+
+font-style: italic;
+
+}
+
+.l2{
+text-transform: uppercase;
+
+text-decoration: line-through;
+
+}
+
+.l3{
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+font-size: 120%;
+
+}
+
+.l4{
+
+font-weight: bold;
+
+text-shadow: 1px 2px 3px green;
+}
+#cuadros{
+    justify-content: flex;
+    display: flex;
+
+    
+}
+.cuadroComun{
+    height: 170px;
+    width: 280px;
+
+    border-radius: 10%;
+    text-align: start;
+    
+
+}
+
+#center{
+display: flex;
+
+flex-direction: row;
+
+text-decoration: underline white;
+    align-items: flex-end;
+    
+
+}
+
+#cuadro1{
+    
+    background-color: rgb(178, 201, 142); 
+    align-items: flex-end;
+  
+}
+
+#cuadro2{
+
+    background-color: rgb(140, 202, 202);
+}
+
+#cuadro3{
+
+    background-color: rgb(134, 93, 172);  
+}
+
+.cred{
+    background-color: rgb(156, 6, 6);
+    color: aliceblue; 
+   margin-right: 5px;
+   width: 120px;
+   height: 35px;
+}
+
+.cgreen{
+background-color: rgb(10, 65, 5);
+    color: aliceblue;
+    margin-right: 5px;
+    width: 120px;
+   height: 35px;
+}
+
+.cblue{
+    background-color: rgb(21, 10, 119);
+    color: aliceblue;  
+    margin-right: 5px;
+    width: 120px;
+   height: 35px;
+}
+
+#links{
+    color: aliceblue;
+    display: flex;
+    text-decoration: underline;
+    
+
+}

@@ -1,0 +1,44 @@
+#padre{
+    display: flex;
+    justify-content: center; /* centra horizontal */
+    align-items: center;     /* centra vertical */
+    height: 100%;            /* necesario para centrar verticalmente */
+    min-width:510px;
+    
+}
+
+#tabla{
+
+
+border:solid black 1px;
+
+height: 79%;
+width: 50%;
+
+
+
+}
+
+.linea{
+border:solid black 1px;
+height: 10%;
+width: 90%;
+margin: 1px;
+padding: 8px;
+}
+
+#lup{
+
+display: flex;
+flex-direction: row;
+
+
+
+}
+
+#ldown{
+
+display: flex;
+flex-direction: row;
+
+}
