@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <table border="1">
+        <thead>
+         <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Edad</th>
+            <th>Ciudad</th>
+        </tr>
+        </thead>
+    <tbody>
+        <tr>
+            <td id="nombre"></td>
+            <td id="apellidos"></td>
+            <td id="edad"></td>
+            <td id="ciudad"></td>
+        </tr>
+    </tbody>
+
+    </table>
+
+<script>
+// Como ya importamos jQuery arriba, este $ ahora sí funciona
+$(document).ready(function (){
+
+    function serializar(obj) {
+        return JSON.stringify(obj);
+    }
+
+    function deSerializar(objJSON) {
+        return JSON.parse(objJSON); 
+    }
+
+    function enviar(obj){
+        console.log("Serializado: " + obj.nombre);
+        return serializar(obj);
+    }
+
+    function recibir(json_serializado){
+        console.log("Deserializado: " + json_serializado);
+        return deSerializar(json_serializado);
+    }
+
+    // Simulamos que el backend de Java nos envió esta respuesta en formato JSON de texto puro:
+     let jsonDesdeJava = '{"nombre":"Carlos", "apellidos":"Pérez Ruiz", "edad":30, "ciudad":"Sevilla"}';
+    // Usamos tu función recibir para transformar ese texto en un objeto de JavaScript
+    let datosUsuario = recibir(jsonDesdeJava);
+
+    // Seleccionamos los 'id' de tu HTML y les inyectamos los datos del objeto
+    $("#nombre").text(datosUsuario.nombre);
+    $("#apellidos").text(datosUsuario.apellidos);
+    $("#edad").text(datosUsuario.edad);
+    $("#ciudad").text(datosUsuario.ciudad);
+
+
+
+    
+});
+
+</script>
+
+
+
+
+</body>
+</html>

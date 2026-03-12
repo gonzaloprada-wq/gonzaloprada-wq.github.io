@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend><strong>COMPROBAR PAR</strong></legend>
+          
+            <label for="numeroPar"><strong>Ingresa numero:</strong></label>
+            <input id="numeroPar" type="number" name="numeroPar" required>
+
+
+            <button type="button" id="esPar">Comprobar</button>
+            <br>
+            <br>
+            <p id="imprimirPar"></p>
+
+        </fieldset>
+    </form>
+
+     <form>
+        <fieldset>
+            <legend><strong>COMPROBAR MAYORIA EDAD</strong></legend>
+          
+            <label for="edad"><strong>Ingresa tu edad</strong></label>
+            <input id="edad" type="number" name="edad" required><label>
+
+                <button type="button" id="suEdad">Comprobar</button>
+                <br>
+                <br>
+                <p id="imprimirMayoriaEdad"></p>
+        </fieldset>
+    </form>
+    <form>
+        <fieldset>
+            <legend><strong>IMPRESION NUMEROS</strong></legend>
+          
+            <input type="text" id="unoDiezText"></input>
+            <button type="button" id="unoDiez">Imprimir numeros del 1-10</button>
+                <br>
+                <br>
+                <p id="imprimirMayoriaEdad"></p>
+        </fieldset>
+    </form>
+</body>
+
+<script id="1">
+
+document.getElementById("esPar").addEventListener("click", () =>{
+
+
+
+    let resultado;
+
+
+    const numeroComprobar = document.getElementById("numeroPar");
+
+    const frase = document.getElementById("imprimirPar");
+
+    if(numeroComprobar.value%2==0){
+
+    resultado=`${numeroComprobar.value} es un numero par`;
+
+    }else{
+
+   resultado=`${numeroComprobar.value} no es un numero par`;
+
+    }
+
+    frase.innerText = resultado;
+
+
+});
+
+</script>
+
+<script id="2">
+
+document.getElementById("suEdad").addEventListener("click",()=>{
+
+ let resultado;
+
+ const edadComprobar=document.getElementById("edad");
+
+ const frase=document.getElementById("imprimirMayoriaEdad");
+
+if(edadComprobar.value>=18){
+
+resultado=`Eres mayor edad, Puedes votar`;
+
+
+}else{
+
+resultado=`Eres menor de edad, No puedes votar`;
+}
+
+
+frase.innerText=resultado;
+
+
+});
+
+</script>
+<script id="3">
+
+document.getElementById("unoDiez").addEventListener("click", ()=>{
+
+let resultado=""
+
+const impresion=document.getElementById("unoDiezText")
+
+for(let i=1;i<=10;i++){
+
+resultado+=`${i} `;
+
+};
+
+impresion.value=resultado;
+
+})
+
+
+</script>
+</html>

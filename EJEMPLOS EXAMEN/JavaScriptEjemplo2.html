@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="titulo">HOLA</h1>
+
+    <button id="boton1">Hola</button>
+
+ 
+    <script>
+
+        const titulo=document.getElementById('titulo');
+
+
+
+        boton1.style.backgroundColor="red";
+
+
+
+        
+        const miBoton2 = document.createElement('button');
+
+        miBoton2.id="boton2"
+
+        miBoton2.innerText="Hola";
+
+        document.body.appendChild(miBoton2 );
+
+
+        const miBoton3 = document.createElement('button');
+
+        miBoton3.id="boton3"
+
+        miBoton3.innerText="Hola";
+
+        document.body.appendChild(miBoton3);
+
+
+        const miBoton4 = document.createElement('button');
+
+        miBoton4.id="boton4"
+
+        miBoton4.innerText="Hola";
+
+        document.body.appendChild(miBoton4);
+
+
+        boton2.style.backgroundColor="green";
+
+        boton3.style.backgroundColor="blue";
+
+        boton4.style.backgroundColor="yellow";
+
+
+    document.querySelector("#boton1").addEventListener("click", function(){
+    
+    titulo.style.color='red';
+
+    });  
+        
+    document.querySelector("#boton2").addEventListener("click", function(){
+    
+    titulo.style.color='green';
+
+    });
+
+     document.querySelector("#boton3").addEventListener("click", function(){
+    
+    titulo.style.color='blue';
+
+    });
+
+    document.querySelector("#boton4").addEventListener("click", function(){
+    
+    titulo.style.color='yellow';
+
+    });
+
+
+    </script>
+
+</body>
+</html>
