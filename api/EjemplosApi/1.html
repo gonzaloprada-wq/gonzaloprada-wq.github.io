@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<form>
+
+<button type="button" id="botonEnviar">Enviar</button>
+
+</form>    
+</br></br>
+<table border="1">
+
+    <thead>
+        <th>Nombre </th>
+        <th>Apellidos</th>
+        <th>Edad</th>
+        <th>Ciudad</th>
+
+    </thead>
+    <tbody id="tableBody">
+
+
+    </tbody>
+
+</table>
+
+</body>
+<script>
+
+const boton = document.getElementById("botonEnviar");
+
+let trabajador1={
+
+    nombre: 'Juan',
+    apellidos:'Garcia Perez',
+    edad:'28',
+    ciudad:'Madrid'
+
+}
+
+function serializarObjeto(obj){
+
+    return JSON.stringify(obj)
+
+}
+function deserializarJSON(json){
+
+    return JSON.parse(json)
+
+}
+
+function añadirTabla(obj){
+
+   const nombre = obj.nombre;
+
+   const apellidos = obj.apellidos;
+
+   const edad= obj.edad;
+
+   const ciudad= obj.ciudad
+
+    document.getElementById("tableBody").innerHTML=`
+        <tr>
+            <td>${nombre}</td>
+            <td>${apellidos}</td>
+            <td>${edad}</td>
+            <td>${ciudad}</td>
+        </tr>
+    `
+
+}
+
+boton.addEventListener("click", function(){
+
+
+trabajador1=serializarObjeto(trabajador1);
+
+trabajador1=deserializarJSON(trabajador1);
+
+añadirTabla(trabajador1)
+
+
+})
+
+
+</script>
+</html>

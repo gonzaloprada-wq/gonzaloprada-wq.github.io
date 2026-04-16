@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+<form>
+<label>Nombre:</label>
+<input type="text" id="nombre" required>
+</br>
+<label>Apellidos:</label>
+<input type="text" id="apellidos" required>
+</br>
+<label>Edad:</label>
+<input type="text" id="edad" required>
+</br>
+<label>Ciudad:</label>
+<input type="text" id="ciudad" required>
+<button type="button" id="botonEnviar">Enviar</button>
+
+</form>    
+
+
+</br></br>
+<table border="1">
+
+    <thead>
+        <th>Nombre </th>
+        <th>Apellidos</th>
+        <th>Edad</th>
+        <th>Ciudad</th>
+
+    </thead>
+    <tbody id="tableBody">
+
+
+    </tbody>
+
+</table>
+
+</body>
+<script>
+
+const boton = $("botonEnviar");
+
+function extraerDatos(){          
+    return {
+        nombre: $("#nombre").val(),
+        apellidos: $("#apellidos").val(),
+        edad: $("#edad").val(),
+        ciudad: $("#ciudad").val()
+         }; 
+}
+
+function serializarObjeto(obj){
+    return JSON.stringify(obj)
+
+}
+function deserializarJSON(json){
+    return JSON.parse(json)
+
+}
+
+function añadirTabla(obj){
+    const fila=`
+        <tr>
+            <td>${obj.nombre}</td>
+            <td>${obj.apellidos}</td>
+            <td>${obj.edad}</td>
+            <td>${obj.ciudad}</td>
+        </tr>
+    `
+        $("#tableBody").append(fila);
+
+
+}
+
+$("#botonEnviar").on("click", function(){
+
+let trabajador1 = extraerDatos();
+trabajador1=serializarObjeto(trabajador1);
+trabajador1=deserializarJSON(trabajador1);
+
+añadirTabla(trabajador1)
+
+
+})
+
+
+
+</script>
+</html>

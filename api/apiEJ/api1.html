@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <button id="botonAleatorio">Aleatorio</button> o 
+    <select id="elegirRaza">
+        <option value="" selected disabled>...o elegirRaza</option>
+    </select> 
+    <br><br><br> <div id="imageBox">
+        <span id="textoImagen">No Imagen</span>
+        <img id="imagenPerro" alt="Imagen de un perro" style="display: none; width: 400px;">
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const botonAleatorio = document.getElementById("botonAleatorio");
+            const elegirRaza = document.getElementById("elegirRaza");
+            const imagenPerro = document.getElementById("imagenPerro");
+            const textoImagen = document.getElementById("textoImagen");
+
+            const capitalizar = (texto) => texto.charAt(0).toUpperCase() + texto.slice(1);
+
+            // Añadimos las reglas para mostrar la imagen y ocultar el texto
+            const mostrarImagen = (url) => {
+                imagenPerro.src = url;
+                imagenPerro.style.display = "block";
+                textoImagen.style.display = "none";
+            }
+
+            fetch("https://dog.ceo/api/breeds/list/all")
+                .then(respuesta => respuesta.json())
+                .then(datos => {
+                    const razas = datos.message;
+
+                    for (const raza in razas) {
+                        const subRazas = razas[raza];
+
+                        // Corregido: length en lugar de lenght
+                        if (subRazas.length === 0) {
+                            // Corregido: "option" en inglés
+                            const opcion = document.createElement("option");
+                            opcion.value = raza;
+                            opcion.textContent = capitalizar(raza);
+                            elegirRaza.appendChild(opcion);
+
+                        } else {
+                            // Añadido: el forEach para recorrer el array de sub-razas
+                            subRazas.forEach(subRaza => {
+                                const opcion = document.createElement("option"); // "option" en inglés
+                                opcion.value = `${raza}/${subRaza}`;
+                                opcion.textContent = `${capitalizar(raza)} - ${capitalizar(subRaza)}`;
+                                elegirRaza.appendChild(opcion);
+                            });
+                        }
+                    }
+                })
+                .catch(error => console.error("Error al cargar las razas:", error));
+
+            botonAleatorio.addEventListener("click", () => {
+                elegirRaza.value = ""; 
+
+                fetch("https://dog.ceo/api/breeds/image/random")
+                    .then(respuesta => respuesta.json())
+                    .then(datos => mostrarImagen(datos.message))
+                    .catch(error => console.error("Error al cargar la imagen aleatoria:", error));
+            });
+
+            // Corregido: usamos la variable elegirRaza en lugar de selectBreed
+            elegirRaza.addEventListener("change", (e) => {
+                const rutaRaza = e.target.value;
+                if (!rutaRaza) return;
+                
+                fetch(`https://dog.ceo/api/breed/${rutaRaza}/images/random`)
+                    .then(respuesta => respuesta.json())
+                    .then(datos => mostrarImagen(datos.message))
+                    .catch(error => console.error("Error al cargar la imagen de la raza:", error));
+            });
+
+        });
+    </script>
+</body>
+</html>

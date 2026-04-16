@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <form>
+        EDAD:<input type="number" id="edad"></br>
+        NOMBRE:<input type="NOMBRE" id="nombre"></br>
+        <button id="botonEnviar" type="button">Enviar</button>
+</br></br>
+        <table border="1">
+            <thead>
+                <th>Edad</th>
+                 <th>Nombre</th>
+            </thead>
+            <tbody id="tableBody">
+
+                
+            </tbody>
+
+
+        </table>
+
+
+
+
+    </form>
+</body>
+<script>
+
+let sumaTotalEdades=0;
+
+let contadorPosiciones=0;
+
+function sumarEdadMedia(edad){
+
+sumaTotalEdades+=parseInt(edad);
+
+}
+
+function sumarContador(){
+
+contadorPosiciones++
+
+}
+
+function eliminarFila(filaElegida){
+
+filaElegida.remove();
+
+}
+
+function extraerDatos(){          
+return {
+ 
+       edad: $("#edad").val(),
+       nombre: $("#nombre").val(),
+         }; 
+}
+
+function serializarObjeto(obj){
+    return JSON.stringify(obj)
+
+}
+function deserializarJSON(json){
+    return JSON.parse(json);
+
+}
+
+function añadirTabla(obj){
+
+    sumarContador();
+
+    const fila=`
+        <tr onclick="eliminarFila(this)" >
+            <td>${obj.nombre}</td>
+            <td>${obj.edad}</td>
+        </tr>
+    `
+
+        $("#tableBody").append(fila);
+
+
+
+}
+
+$("#botonEnviar").on("click", function(){
+
+    
+let usuarioActual = extraerDatos();
+if(usuarioActual.edad!=""&&usuarioActual.nombre!=""){
+
+usuarioActual = serializarObjeto(usuarioActual);
+usuarioActual = deserializarJSON(usuarioActual);
+
+añadirTabla(usuarioActual);
+}else{
+
+alert("RELLENE TODOS LOS CAMPOS!")
+
+}
+})
+
+
+
+</script>
+</html>

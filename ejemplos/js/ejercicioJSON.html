@@ -4,71 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-    <table border="1">
-        <thead>
-         <tr>
-            <th>Nombre</th>
-            <th>Apellidos</th>
-            <th>Edad</th>
-            <th>Ciudad</th>
-        </tr>
-        </thead>
-    <tbody>
-        <tr>
-            <td id="nombre"></td>
-            <td id="apellidos"></td>
-            <td id="edad"></td>
-            <td id="ciudad"></td>
-        </tr>
-    </tbody>
 
-    </table>
+    <form>
+   <fieldset>
+    <a>Ingresa Numero: </a><input type="text" id="Numero">
+    <a id="mayorMenor"></a>
+    </br></br>
+    <button type="button" id="boton">Ingresa numero</button>
+    </fieldset>
+
+    </br>
+    CARTERA: <div id="cartera"></div>
+    PUNTOS: <div id="puntos"></div>
+    <div id="fallo"></div>
+    <div id="numeroBuscar"></div>
+
+
+
+        </form>
+</body>
 
 <script>
-// Como ya importamos jQuery arriba, este $ ahora sí funciona
-$(document).ready(function (){
 
-    function serializar(obj) {
-        return JSON.stringify(obj);
-    }
+let numeroAleatorio = Math.floor(Math.random() * 101);  
 
-    function deSerializar(objJSON) {
-        return JSON.parse(objJSON); 
-    }
+let cartera=10;
 
-    function enviar(obj){
-        console.log("Serializado: " + obj.nombre);
-        return serializar(obj);
-    }
-
-    function recibir(json_serializado){
-        console.log("Deserializado: " + json_serializado);
-        return deSerializar(json_serializado);
-    }
-
-    // Simulamos que el backend de Java nos envió esta respuesta en formato JSON de texto puro:
-     let jsonDesdeJava = '{"nombre":"Carlos", "apellidos":"Pérez Ruiz", "edad":30, "ciudad":"Sevilla"}';
-    // Usamos tu función recibir para transformar ese texto en un objeto de JavaScript
-    let datosUsuario = recibir(jsonDesdeJava);
-
-    // Seleccionamos los 'id' de tu HTML y les inyectamos los datos del objeto
-    $("#nombre").text(datosUsuario.nombre);
-    $("#apellidos").text(datosUsuario.apellidos);
-    $("#edad").text(datosUsuario.edad);
-    $("#ciudad").text(datosUsuario.ciudad);
-
+let puntos=0;
 
 
     
-});
+document.getElementById("numeroBuscar").textContent=numeroAleatorio;
+
+document.getElementById("cartera").textContent=cartera;
+document.getElementById("puntos").textContent=puntos;
+
+document.getElementById("boton").addEventListener("click", function(){
+
+
+numeroIngresado = parseInt(document.getElementById("Numero").value);
+
+
+if(numeroIngresado>numeroAleatorio){
+
+document.getElementById("mayorMenor").innerText="Menor";
+    
+}else{
+
+document.getElementById("mayorMenor").innerText="Mayor";
+
+    
+}
+
+if(cartera>0){
+if(numeroAleatorio===numeroIngresado){
+
+
+puntos+=cartera;
+document.getElementById("puntos").textContent=puntos;
+
+numeroAleatorio = Math.floor(Math.random() * 101);  
+document.getElementById("numeroBuscar").textContent=numeroAleatorio;
+
+
+}
+
+
+cartera--
+document.getElementById("cartera").textContent=cartera;
+
+
+}else{
+
+document.getElementById("fallo").textContent="NO QUEDAN PUNTOS EN LA CARTERA"
+document.getElementById("fallo").innerHTML="NO QUEDAN PUNTOS EN LA CARTERA <br><br> <button type='button' id='botonReiniciar'>Reiniciar Juego</button>";
+
+
+document.getElementById("botonReiniciar").addEventListener("click", function(){
+
+ document.getElementById("fallo").innerHTML="";   
+
+cartera=10;
+document.getElementById("cartera").textContent=cartera;
+puntos=0;
+document.getElementById("puntos").textContent=puntos;
+
+
+numeroAleatorio = Math.floor(Math.random() * 101);  
+document.getElementById("numeroBuscar").textContent=numeroAleatorio;
+
+})
+
+}
+
+
+
+
+
+})
+
 
 </script>
 
 
-
-
-</body>
 </html>
