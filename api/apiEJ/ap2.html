@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+</head>
+<body>
+    ELEGIR EQUIPO:
+    <select id="elegirEquipo"></select> 
+
+    <button type="button" id="boton">Boton</button>
+</br></br></br>
+    <b>NOMBRE EQUIPO:</b><div id="nombre"></div></br>
+    <b>NOMBRE LIGA:</b><div id="liga"></div></br>
+    <b>ID EQUIPO:</b><div id="idTeam"></div></br>
+    <b>ESCUDO:</b></br></br><img id="escudo" src="" width="150" alt="Escudo del equipo"></br>
+</body>
+<script>
+ 
+    function rellenarDesplegable(equipo, elementoSelector) {
+
+        elementoSelector.innerHTML += `<option value="${equipo.strTeam}">${equipo.strTeam}</option>`;
+
+}
+
+    function mostrarDatos(equipo){
+
+        document.getElementById("nombre").textContent=equipo.strTeam;
+
+        document.getElementById("liga").textContent=equipo.strLeague;
+
+        document.getElementById("idTeam").textContent=equipo.idTeam;
+    
+        document.getElementById("escudo").src = equipo.strBadge;
+
+    }
+
+    function encontrarEquipo(){
+
+        const equipoElegido=document.getElementById("elegirEquipo").value;
+
+        if(equipoElegido!==""){
+
+            fetch(`https://www.thesportsdb.com/api/v1/json/3/searchteams.php?t=${equipoElegido}`)
+        .then(respuesta => respuesta.json())
+        .then(datos => {
+
+            const equipo=datos.teams[0];
+            
+            mostrarDatos(equipo);
+
+        });
+
+    
+    }
+
+    }
+
+
+    const selector = document.getElementById("elegirEquipo");
+    const boton=document.getElementById("boton");
+
+
+    fetch("https://www.thesportsdb.com/api/v1/json/3/search_all_teams.php?l=English%20Premier%20League")    
+    .then(respuesta=>respuesta.json())
+    .then(datos => {
+
+    selector.innerHTML = '<option value="">--Elige Equipo--</option>';
+
+    if(datos.teams){
+        datos.teams.forEach(equipo=>{
+
+            rellenarDesplegable(equipo, selector);
+
+        })
+    }   
+    })
+
+
+    document.getElementById("boton").addEventListener("click", function(){
+
+        encontrarEquipo();
+
+    })
+
+
+
+
+</script>
+</html>
