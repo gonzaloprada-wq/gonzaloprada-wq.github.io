@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>POKEDEX FINDER</h1>
+    </br>
+    <label>Ingresa la id:</label>
+
+    <input id="idPokemon"></input>
+    <button type="button" id="boton">Ingresar</button>
+    </br></br>
+    <b><label>NOMBRE: </label></b>
+    <a id="nombre"></a>
+    </br></br>
+
+    <b><label>TIPOS :</label> </b>
+    <ul><a id="listaTipos">
+
+
+    </a>
+    </ul>
+    </br></br>
+
+    <b><label>IMAGEN: </label></b></br>
+    <a id="imagen"><img width="150" border="1px solid black" alt="Imagen del pokemon"></a>
+
+</body>
+
+<script>
+    
+$(document).ready(function() {
+
+    function normalizar(palabra) {
+
+        return palabra.toUpperCase();
+
+    }
+
+    function mostrarPantalla(datos){
+
+        $('#nombre').text(normalizar(datos.name));
+        $('#imagen').html(`<img src="${datos.sprites.front_default}" width="150" border="1px solid black" alt="Imagen del pokemon">`);
+
+        if($('#listaTipos').length > 0){
+
+        $('#listaTipos').empty();   
+
+            datos.types.forEach(item=>{
+            
+                $('#listaTipos').append(`<li>${normalizar(item.type.name)}</li>`)
+                
+            });
+        };
+
+    };
+
+
+        $('#boton').click(function () {
+
+        let idBusqueda = $('#idPokemon').val();
+
+        fetch(`https://pokeapi.co/api/v2/pokemon/${idBusqueda}`)
+            .then(respuesta => respuesta.json())
+            .then(datos => { 
+              
+                mostrarPantalla(datos);                
+
+             })
+
+    })
+
+
+
+
+})
+</script>
+
+</html>
