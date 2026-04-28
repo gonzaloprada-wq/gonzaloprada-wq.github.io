@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <form>
+<fieldset>
+    <input type="text" id="nombre" placeholder="nombre"> 
+    <input type="text" id="apellidos" placeholder="apellidos">
+    <input type="number" id="edad" placeholder="edad">
+    <input type="text" id="ciudad" placeholder="ciudad">
+    <button type="button" id="boton">Insertar Datos</button>
+</fieldset>
+    </form>
+</br>
+<b>Suma:</b><a id="sumaTotal"></a></br></br>
+<b>Media:</b><a id="mediaTotal"></a></br></br>
+<b>Maximo:</b><a id="maximo"></a></br></br>
+<b>Minimo:</b><a id="minimo"></a></br></br>
+
+<table border="1">
+<thead>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Edad</th>
+    <th>Ciudad</th>
+</thead>
+<tbody id="tablaCuerpo">
+
+
+
+</tbody>
+</table>
+
+
+</body>
+<script>
+
+let listaUsuario=[];
+
+$(document).ready(function() {
+    
+//////////////////////////////
+function convertirObjeto(nombre, apellidos, edad, ciudad){
+
+        let nuevoUsuario={
+
+        nombre: nombre,
+        apellidos: apellidos,
+        edad: edad,
+        ciudad: ciudad
+
+        };
+
+return nuevoUsuario;
+
+
+}
+//////////////////////////////
+function crearTabla(listaUsuario){
+
+let cuerpo=$("#tablaCuerpo");
+
+cuerpo.empty();
+
+listaUsuario.forEach((usuario, indice) => {
+    
+let fila=generarFila(usuario, indice);
+
+cuerpo.append(fila);
+
+});
+
+}
+//////////////////////////////
+function generarFila(usuario, indice){
+
+return`<tr id=${indice}>
+
+                <td>${usuario.nombre}</td>
+                <td>${usuario.apellidos}</td>
+                <td>${usuario.edad}</td>
+                <td>${usuario.ciudad}</td>
+
+                </tr>`
+
+}
+//////////////////////////////
+function generarCalculos(listaUsuario){
+
+let suma=0;
+
+let contador=0;
+
+let menorEdad=Infinity  ;
+
+let mayorEdad=0;
+
+listaUsuario.forEach((usuario) => {
+   
+    suma+=usuario.edad;
+
+    contador++;
+    
+    if(usuario.edad>=mayorEdad){
+
+        mayorEdad=usuario.edad;
+
+    }
+
+    if(usuario.edad<=menorEdad){
+
+        menorEdad=usuario.edad;
+
+    }
+
+    
+
+});
+
+let media=suma/contador;
+
+añadirDatosEdad(suma, media, menorEdad, mayorEdad);
+
+}
+//////////////////////////////
+function añadirDatosEdad(suma, contador, menorEdad, mayorEdad){
+
+    $("#sumaTotal").text(suma);
+    $("#mediaTotal").text(suma / contador);
+    $("#minimo").text(menorEdad);
+    $("#maximo").text(mayorEdad);
+}
+
+$('#boton').click(function () {
+
+let nombre=$("#nombre").val();
+
+let apellidos=$("#apellidos").val();
+
+let edad=$("#edad").val();
+
+let ciudad=$("#ciudad").val();
+
+let usuarioActual=convertirObjeto(nombre, apellidos, edad, ciudad);
+
+listaUsuario.push(usuarioActual);
+
+crearTabla(listaUsuario);
+
+generarCalculos(listaUsuario);
+
+})
+
+
+})
+
+</script>
+</html>
