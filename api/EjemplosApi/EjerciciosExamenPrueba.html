@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <button type="button" id="aleatorio">Aleatorio</button>
+
+            <select id="elegirRaza">
+                <option value="" selected disabled>...o elegirRaza</option>
+            </select>
+
+        </fieldset>
+    </form>
+    </br></br></br>
+    <img id="imagenPerro" alt="No hay imagen disponible" width="500px" style="border: 2cm;">
+</body>
+<script>
+
+
+
+    function imprimirImagen(valorPerro) {
+
+        $.ajax({
+            url: `https://dog.ceo/api/breed/${valorPerro}/images/random`,
+            method: "GET",
+            dataType: "json" 
+        }).done(response => {
+
+          $("#imagenPerro").prop("src", response.message);
+
+
+        })
+            .fail(error => console.log(error));
+    }
+
+
+    
+
+
+    function imprimirSelector(subrazas, raza) {
+
+        if (subrazas.length > 0) {
+
+            for (let i = 0; i < subrazas.length; i++) {
+
+                $("#elegirRaza").append(`<option value="${raza}/${subrazas[i]}">${raza}-${subrazas[i]}</option>`)
+
+            }
+        } else {
+
+            $("#elegirRaza").append(`<option value="${raza}">${raza}</option>`)
+
+        }
+
+
+
+    }
+
+    function cargarAPI() {
+
+        $.ajax({
+            url: "https://dog.ceo/api/breeds/list/all",
+            method: "GET",
+            dataType: "json"
+        }).done(response => {
+
+            let razas = response.message;
+
+            for (let raza in razas) {
+
+                let subrazas = razas[raza];
+
+                imprimirSelector(subrazas, raza)
+
+
+            }
+
+
+        }).fail(error => console.log(error));
+
+
+
+    }
+
+    $("#elegirRaza")
+
+    $("#aleatorio").on("click", function(){
+
+        $.ajax({
+            url: `https://dog.ceo/api/breeds/image/random`,
+            method: "GET",
+            dataType: "json" 
+        }).done(response => {
+
+          $("#imagenPerro").prop("src", response.message);
+
+
+        })
+            .fail(error => console.log(error));
+    })
+
+
+    $("#document").ready(function () {
+
+        cargarAPI();
+
+
+
+
+
+    })
+</script>
+
+</html>

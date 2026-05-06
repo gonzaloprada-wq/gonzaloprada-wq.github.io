@@ -86,3 +86,20 @@
     </script>
 </body>
 </html>
+/*$("#elegirRaza").on("change", function () {
+
+    const valor = $(this).val();
+
+    if (valor === "") return;
+
+    $.ajax({
+        url: `https://dog.ceo/api/breed/${valor}/images/random`,
+        method: "GET",
+        dataType: "json"
+    })
+    .done(response => {
+        $("#imagenPerro").prop("src", response.message);
+    })
+    .fail(error => console.log(error));
+
+});*/

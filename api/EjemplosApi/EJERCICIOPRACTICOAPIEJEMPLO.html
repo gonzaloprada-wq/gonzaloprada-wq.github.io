@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Datos</legend>
+            <input id="descripcion" type="text" placeholder="descripcion">
+        </br></br>
+            <input id="idProveedor" type="number" placeholder="Id del idProveedor">
+        </br></br>
+            <input id="precio" type="number" placeholder="Precio">
+        </fieldset>
+        </br>
+        <button type="button" id="enviar">Enviar</button>
+    </form>
+    </br>
+    <a style="color: red;"><h2 id="mensaje"></h2></a>
+</br></br>
+<table border="1">
+    <thead>
+        <th>ID</th>
+        <th>Descripcion</th>
+        <th>ID Proveedor</th>
+        <th>Precio</th>
+        <th>Borrado</th>
+    </thead>
+    <tbody id="cuerpoDeTabla">
+
+
+
+
+    </tbody>
+</table>
+</body> 
+
+<script>
+
+let listaObjetos=[];
+
+function recogerDatos(){
+
+let descripcion=$("#descripcion").val();
+
+let idProveedor=parseInt($("#idProveedor").val());
+
+let precio=parseFloat($("#precio").val());
+
+return{
+
+descripcion: descripcion,
+
+idProveedor: idProveedor,
+
+precio: precio
+
+}
+
+
+}
+
+function enviarDatos(objeto){
+
+$.ajax({
+        url: "https://lm.iesnervion.es/reto4.php",
+        method: "POST",
+        data: JSON.stringify(objeto),
+        contentType: "application/json",
+        dataType: "json" 
+    }).done(response=>{
+
+        if(response.error){
+
+            imprimirError(response.error)
+
+        }else{  
+
+             imprimirOK()
+
+            actualizarLista(response.lista);
+
+        }
+
+
+    }).fail(error=>console.log(error));
+    
+}
+
+function imprimirError(mensajeError){
+
+$("#mensaje").text(mensajeError);
+
+}
+
+function imprimirOK(){
+
+$("#mensaje").text("OK");
+
+}
+
+function eliminarFila(indice){
+
+listaObjetos.splice(indice, 1);
+
+actualizarLista(listaObjetos);
+
+}
+
+function actualizarLista(lista){
+
+listaObjetos=lista;
+
+imprimirLista(lista);
+
+}
+
+function imprimirLista(lista){
+
+$("#cuerpoDeTabla").html("")
+
+lista.forEach((element, indice) => {
+    
+let filaActual=crearFila(element, indice);
+
+$("#cuerpoDeTabla").append(filaActual);
+
+});
+
+
+}
+
+function crearFila(obj, indice){
+
+return`<tr id="indice" onclick="eliminarFila(${indice})">
+    <td>${obj.id}</td>
+    <td>${obj.descripcion}</td>
+    <td>${obj.idProveedor}</td>
+    <td>${obj.precio}</td>
+        <td>${obj.borrado}</td>
+    </tr>`
+
+}
+
+
+$("#enviar").on("click", function(){
+
+let objetoAEnviar=recogerDatos();
+
+enviarDatos(objetoAEnviar);
+
+
+})
+
+
+
+</script>
+</html>
